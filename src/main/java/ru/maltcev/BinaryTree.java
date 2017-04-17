@@ -89,53 +89,37 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractSet<T> {
     public class BinaryTreeIterator implements Iterator<T> {
 
         private Node<T> current = null;
-        private Stack<Node<T>> nodeStack = new Stack<>();
-        private T maxValue = null;
         private Set<T> pathItem = new HashSet<>();
-        private boolean isRigthPart = true;
 
         private BinaryTreeIterator() {}
 
         private void findFirst() {
             current = root;
-            while (current.right!=null) {
-                nodeStack.push(current);
+            while (current.right!=null)
                 current = current.right;
-            }
-            maxValue = current.value;
         }
 
         public Node<T> findNext() {
-
             if(current == null) {
                 findFirst();
                 pathItem.add(current.value);
                 return current;
             }
             pathItem.add(current.value);
-
             if(current.right != null && !pathItem.contains(current.right.value)) {
-
                 current = current.right;
-
                 while (current.right != null)
                     current = current.right;
-
                 return current;
             }
             if(current.left != null && !pathItem.contains(current.left.value)) {
-
                 current = current.left;
-
                 while (current.right != null)
                     current = current.right;
-
                 return current;
             }
-
             while (pathItem.contains(current.parent.value))
                 current = current.parent;
-
             return current.parent;
         }
 
