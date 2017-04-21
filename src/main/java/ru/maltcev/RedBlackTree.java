@@ -12,8 +12,6 @@ public class RedBlackTree {
         if (root.getLeft() == null)
             return root.getRight() == null;
 
-        System.out.println(lengthDetermination(root.getLeft()) + " " + lengthDetermination(root.getRight()));
-
         return lengthDetermination(root) != -1;
     }
 
